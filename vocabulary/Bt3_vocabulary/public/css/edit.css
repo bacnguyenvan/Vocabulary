@@ -1,0 +1,105 @@
+ .wrap {
+    width: 60%;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 2px 0px 3px 2px #8888;
+    height: 560px;
+}
+body{
+    background:white;
+}
+.content{
+    margin-top: 15px;
+    width: 75%;
+
+}
+label.error{
+    color: red !important;
+}
+.required{
+    color:red;
+}
+.form-group{
+margin-bottom: 0px !important;
+}
+.icon {
+  padding: 12px;
+  background: purple;
+  color: white;
+  min-width: 40px;
+  text-align: center;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #80008024;
+}
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+  position: relative;
+  height: 50px;
+}
+.input-container i {
+    position: absolute;
+    height: 40px;
+    border-radius: 25px;
+    left: 8px;
+    top:4px;
+}
+ .form-group input,.form-group select{
+   border-radius: 50px;
+   padding-left:60px;
+}
+
+form#main-form label {
+    color: #6700809e;
+}
+.update{
+  background : linear-gradient(to right, pink, purple);
+  color: white;
+  padding: 15px 0px;
+  width: 100%;
+  border-radius:30px;
+  transition: 1s;
+}
+.update:hover{
+    background : linear-gradient(to left, pink, purple);
+}
+
+.reset,.comeback{
+     padding: 12px 0px;
+     width: 49%;
+     float: left;
+     border-radius:30px;
+}
+.position,.comeback{
+    margin-left: 10px;
+}
+h1.page-header {
+    padding-top: 20px;
+    color: orange;
+}
+.input-block {
+    display:block !important;
+}
+input.input-field {
+    height: 48px;
+}  
+ @media screen and (max-width: 1195px){
+	.gender,.position,.comeback{
+         margin-left: 0px !important;
+    }
+    
+}
+@media screen and (max-width:980px){
+	.name,.gender,.office,.position{
+		width: 100% !important;
+	}
+	.wrap{
+		height: 800px !important;
+		width: 80% !important;
+	}
+}

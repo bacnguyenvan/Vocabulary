@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
+.logo-text{
+	font-family: 'Lobster', cursive;
+	color: white;
+	font-size: 45px;
+	padding-left: 10px;
+}
+.input_search {
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    line-height: 60px;
+}
+.search{
+	color: white;
+}
+.create{
+	color: white;
+	font-size: 20px;
+	line-height: 60px;
+}
+.acount{
+	color: white;
+	font-size: 20px;
+	text-decoration: none !important;
+	padding-right: 30px;
+	position: relative;
+	cursor: pointer;
+
+}
+.acount:hover{
+	color: purple;
+}
+.logo-acount {
+    width: 60px;
+    height: 55px;
+    border-radius: 50%;
+    background: white;
+}
+ul.acount-dropdown a {
+    color: black;
+}
+
+ul.acount-dropdown {
+    list-style: none;
+    background: white;
+    width: 180px;
+    position: absolute;
+    left: 10px;
+    box-shadow: 1px 0px 4px 1px #ddd;
+    top: 78px;
+    display: none;
+    transition: 1s;
+
+}
+ul.acount-dropdown:after {
+    content: '';
+    position: absolute;
+    border: 10px solid transparent;
+    border-bottom-color: white;
+    top: -20px;
+    right: 0;
+}
+.show{
+	display: block !important;
+}
+/*end header*/
+/*content*/
+.content {
+    background: #53bfb636;
+    height: 100vh;
+}
+.table-content{
+    background: white;
+}
+.title-content-text{
+    font-family: 'Exo 2', sans-serif;
+    color: orange;
+    font-size: 45px;
+}
+.title-content {
+    text-align: center;
+    padding-top:25px;
+}
+p.vocabulary {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+p.total-vocabulary {
+    color: red;
+}
+.create{
+    cursor: pointer;
+    transition: 0.5s;
+}
+.create:hover{
+    color: orange;
+    font-weight: bold;
+}
+/*box*/
+form#formName input {
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    border-bottom: 1px solid;
+}
+label.error{
+    color: red !important;
+}
+
+/*end content*/
