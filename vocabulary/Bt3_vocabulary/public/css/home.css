@@ -70,10 +70,11 @@ ul.acount-dropdown:after {
 /*content*/
 .content {
     background: #53bfb636;
-    height: 100vh;
+    height: 800px;
 }
 .table-content{
     background: white;
+    margin-top:65px;
 }
 .title-content-text{
     font-family: 'Exo 2', sans-serif;
@@ -82,9 +83,9 @@ ul.acount-dropdown:after {
 }
 .title-content {
     text-align: center;
-    padding-top:25px;
+   
 }
-p.vocabulary {
+.vocabulary {
     font-size: 30px;
     font-weight: 500;
 }
@@ -112,3 +113,41 @@ label.error{
 }
 
 /*end content*/
+/*paginate*/
+.pagination.pull-left{
+    position: relative;
+}
+.pagination.pull-left>ul {
+    list-style: none;
+    position: absolute;
+    right: 0;
+}
+
+.pagination.pull-left ul li {
+    display: inline-block;
+}
+
+.pagination.pull-left {
+    width: 100%;
+}
+/*end paginate*/
+
+/*reponsive*/
+@media screen and (max-width: 1345px) {
+    .col-md-2.logo {
+    display: none;
+    }
+    .col-md-2.search {
+    font-size: 12px;
+    padding-top: 22px;
+    }
+    .create{
+    line-height: 45px;
+    
+    }
+}
+@media screen and (max-width: 767px) {
+    .col-md-2.logo {
+    display: block;
+    }
+}

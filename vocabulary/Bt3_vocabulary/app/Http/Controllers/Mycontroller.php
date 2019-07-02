@@ -31,7 +31,9 @@ class Mycontroller extends Controller
     //home
     public function home(Request $request){
         $nameUser=Auth::user()->name; // get name to login with name admin
-        $voca=vocabulary::select('name','sentence','mean','id')->get()->toArray();
+
+        $getId=Auth::user()->id;
+        $voca=vocabulary::where('user_id',$getId)->paginate(4);//get()->toArray();
         return view('home',['vocabulary'=>$voca,'nameUser'=>$nameUser]);
     }
     
@@ -104,9 +106,10 @@ class Mycontroller extends Controller
         $voca->name     =$request->txtName;
         $voca->sentence =$request->txtSentence;
         $voca->mean     =$request->txtMean;
-
+        $voca->user_id  =Auth::user()->id;
+        $getId=Auth::user()->id;
         //check name exist
-        $voca_name=vocabulary::where('name',$request->txtName)->get()->toArray();
+        $voca_name=vocabulary::where('user_id',$getId)->where('name',$request->txtName)->get()->toArray();
         if(count($voca_name)==0 && isset($voca->name)){
             $voca->save();
 
@@ -135,6 +138,7 @@ class Mycontroller extends Controller
             $voca->name     =$request->txtName;
             $voca->sentence =$request->txtSentence;
             $voca->mean     =$request->txtMean;
+            $voca->user_id  =Auth::user()->id;
 
             $voca->save();
             return redirect()->route('home')->with(['editSuccess'=>'Edit success']);
@@ -142,5 +146,8 @@ class Mycontroller extends Controller
         $data=vocabulary::find($id);
         return view('edit',compact('data'));
     }
+
+    //search
+    
    
 }

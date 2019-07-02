@@ -14,14 +14,20 @@ class CreateVocabulariesTable extends Migration
     public function up()
     {
         Schema::create('vocabularies', function (Blueprint $table) {
+            
+            
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('sentence')->nullable();
             $table->string('mean')->nullable();
 
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamp('create_at')->useCurrent();
             $table->softDeletes();
         });
+        
     }
 
     /**

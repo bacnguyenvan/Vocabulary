@@ -90,11 +90,52 @@
 					<div class="alert alert-danger"> {{ Session::get('error') }}</div>
 				@endif
 				<h2 class="title-content-text">Stay hungry Stay foolish<i class="fas fa-guitar fa-2x"></i></h2>
-				<p class="vocabulary">Your vocabulary</p>
-				<p class="total-vocabulary">Total:<span style="font-size: 20px;color: blue;padding-left:15px"><i>{{count($vocabulary)}}</i></span></p>
+				<div class="vocabulary">Your vocabulary</div> 
+
+				<div class="total-vocabulary" style="color: black;font-size: 20px">Page: <span style="font-size: 20px;color: blue;
+				padding-left:15px"><i> {{$vocabulary->currentPage()}}</i></span></div>
+
+				<p class="total-vocabulary">Total:<span style="font-size: 20px;color: blue;
+				padding-left:15px"><i> {{count($vocabulary)}}</i></span></p>
 			</div>
 			{{-- end title --}}
 			<div class="container ">
+
+						{{-- paginate --}}
+						<?php 
+							$pageCurrent	=$vocabulary->currentPage();
+							$pageLast 		=$vocabulary->lastPage();
+
+							if($pageCurrent==$pageLast) $next=$pageCurrent;
+							else 	$next=$vocabulary->currentPage()+1; 
+
+							
+
+						?>
+					    <div class="pagination pull-left"> {{--pagination:  << <1/3> >> --}}
+							<ul>
+								<li>
+									<a href="{{str_replace('/?','?',$vocabulary->url($pageCurrent-1))}}"> 
+										<span class="btn btn-info"> Prev </span>
+									</a>
+								</li>
+								<li>
+									<a href="">
+									 <span class="btn btn-primary"> <{{$pageCurrent}}/{{$pageLast }} ></span>
+									</a>
+								</li>
+								
+								<li>
+									<a href="{{ str_replace('/?','?',$vocabulary->url($next)) }} " > 
+										<span class="btn btn-info"> Next <span> 
+									</a>
+								</li>
+
+							</ul>
+
+						</div>
+					    {{-- end paginate --}}
+
 				<table class="table table-content">
 				  {{-- <caption>List of vocabularies</caption> --}}
 				  <thead>

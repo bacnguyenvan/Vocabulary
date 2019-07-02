@@ -29,3 +29,6 @@ Route::post('addVoca','Mycontroller@addVoca')->name('addVoca');
 Route::get('deleteVoca/{id}','Mycontroller@deleteVoca')->name('deleteVoca');
 // edit
 Route::match(['get','post'],'editVoca/{id}','Mycontroller@editVoca')->name('editVoca');
+
+//search
+Route::post('search','Mycontroller@search')->name('search');
