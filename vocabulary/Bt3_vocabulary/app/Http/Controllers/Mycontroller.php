@@ -33,7 +33,7 @@ class Mycontroller extends Controller
         $nameUser=Auth::user()->name; // get name to login with name admin
 
         $getId=Auth::user()->id;
-        $voca=vocabulary::where('user_id',$getId)->paginate(4);//get()->toArray();
+        $voca=vocabulary::where('user_id',$getId)->paginate(5);//get()->toArray();
         return view('home',['vocabulary'=>$voca,'nameUser'=>$nameUser]);
     }
     
@@ -145,6 +145,21 @@ class Mycontroller extends Controller
         }
         $data=vocabulary::find($id);
         return view('edit',compact('data'));
+    }
+
+    //setting
+    public function setting(Request $request){
+        $userName=Auth::user()->name;
+
+        if($request->isMethod('post')){
+            $pass   =$request->txtPass;
+            $name   =$request->txtName;
+
+            User::where('name',$userName)->update(['name'=>$name,'password'=>bcrypt($pass)]);
+
+            return view('setting',['name'=>$userName,'success'=>'Changing your account information success']);
+        }
+        return view('setting',['name'=>$userName]);
     }
 
     //search

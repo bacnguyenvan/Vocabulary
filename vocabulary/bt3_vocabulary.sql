@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2019 at 01:37 AM
+-- Generation Time: Jul 02, 2019 at 09:02 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -75,9 +75,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `create_at`, `update_at`) VALUES
-(1, 'Bac12', 'bac@gmail.com', '$2y$10$KjzH9ks2JrHfZxkNjoT3P.vxnxKyAjW6mS7Fe8SMROPniYIUBY6Se', '2019-06-30 14:29:09', '2019-06-30 14:29:09'),
-(2, 'Thu hang', 'bacnguyen11b41998@gmail.com', '$2y$10$AqmR.1nd692nBVu6e6aGjuv2W2nQZy3zyBpOtjQmU1LccXfFOtBpq', '2019-06-30 14:35:15', '2019-06-30 14:35:15'),
-(3, 'Nam12', 'nam@gmail.com', '$2y$10$Y.NWhU1G3mtBP8EDa06Oy.ZJqfVfZm5lzyHIr.VSNthAca0ffHWQa', '2019-06-30 14:39:03', '2019-06-30 14:39:03');
+(1, 'BacPro', 'bac@gmail.com', '$2y$10$JTtNHFj7KcQO2q3jNgmUK.qk0.6PPJmzfAOKlXtYi3kWzCSBP9jMi', '2019-07-01 13:34:24', '2019-07-01 13:34:24'),
+(2, 'Thu hang', 'bacnguyen11b41998@gmail.com', '$2y$10$yJKNO6GQ4PZ1/HXQt7Cvj.gsE.AE.2Y4OXBiJR4CdPrP0V5.hw.H2', '2019-07-01 13:35:11', '2019-07-01 13:35:11');
 
 -- --------------------------------------------------------
 
@@ -90,6 +89,7 @@ CREATE TABLE `vocabularies` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sentence` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mean` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -98,12 +98,19 @@ CREATE TABLE `vocabularies` (
 -- Dumping data for table `vocabularies`
 --
 
-INSERT INTO `vocabularies` (`id`, `name`, `sentence`, `mean`, `create_at`, `deleted_at`) VALUES
-(1, 'Approve', 'My boss approve his ideas', 'tán thành', '2019-06-30 14:29:09', '2019-06-30 07:39:27'),
-(2, 'Admit', 'He admit his mistake', 'Thừa nhận', '2019-06-30 14:33:20', NULL),
-(3, 'blame', NULL, 'Khiển trách', '2019-06-30 14:34:21', '2019-06-30 07:34:35'),
-(4, 'Blame', 'I blame my girlfriend because she don\'t go out with me :))', 'Khiển trách', '2019-06-30 14:35:40', '2019-06-30 07:39:23'),
-(5, 'blame', NULL, NULL, '2019-06-30 14:39:34', NULL);
+INSERT INTO `vocabularies` (`id`, `name`, `sentence`, `mean`, `user_id`, `create_at`, `deleted_at`) VALUES
+(1, 'Approve', 'My boss approve his ideas', 'tán thành', 1, '2019-07-01 13:34:24', NULL),
+(2, 'Blame', 'I blame my girlfriend because hey don\'t go out with me', 'Khien trach', 2, '2019-07-01 13:34:24', NULL),
+(3, 'Admit', 'He never admit his mistake', 'Thừa nhận', 2, '2019-07-01 14:04:53', NULL),
+(4, 'Donate', NULL, 'Tặng quà', 2, '2019-07-01 14:17:10', NULL),
+(5, 'blame', NULL, 'Khiển trách', 1, '2019-07-01 14:25:45', NULL),
+(6, 'Nam', NULL, NULL, 1, '2019-07-01 14:40:11', '2019-07-01 07:41:24'),
+(7, 'Admit', NULL, NULL, 1, '2019-07-01 14:40:18', NULL),
+(8, 'Nguyen Bac', NULL, NULL, 1, '2019-07-01 14:40:28', '2019-07-01 07:51:27'),
+(9, 'lll', NULL, NULL, 1, '2019-07-01 14:46:24', '2019-07-01 07:51:30'),
+(10, 'lan', NULL, NULL, 1, '2019-07-01 15:05:19', '2019-07-01 08:37:41'),
+(11, 'Nam', NULL, NULL, 1, '2019-07-01 15:09:39', '2019-07-01 08:37:44'),
+(12, 'Ague', NULL, 'Tranh cãi', 1, '2019-07-02 06:59:49', NULL);
 
 --
 -- Indexes for dumped tables
@@ -125,14 +132,14 @@ ALTER TABLE `password_resets`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `vocabularies`
 --
 ALTER TABLE `vocabularies`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vocabularies_user_id_foreign` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -148,13 +155,23 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `vocabularies`
 --
 ALTER TABLE `vocabularies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `vocabularies`
+--
+ALTER TABLE `vocabularies`
+  ADD CONSTRAINT `vocabularies_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

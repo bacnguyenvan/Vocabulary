@@ -4,8 +4,9 @@
 
 html,body{
 /*background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');*/
-background-image: url('../images/background.jpg');
+background-image: url('../images/hcmute.jpg');
 background-size: cover;
+background-position: center center;
 background-repeat: no-repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;

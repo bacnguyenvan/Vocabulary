@@ -15,13 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// login
+// login , logout
 Route::match(['get','post'],'login','Mycontroller@login')->name('login');
 Route::match(['get','post'],'home','Mycontroller@home')->name('home');
 //sign up
 Route::match(['get','post'],'signUp','Mycontroller@signUp')->name('signUp');
 //lost password
 Route::match(['get','post'],'lostPassword','Mycontroller@lostPassword')->name('lostPassword');
+//setting
+Route::match(['get','post'],'setting','Mycontroller@setting')->name('setting');
+
 
 //add
 Route::post('addVoca','Mycontroller@addVoca')->name('addVoca');

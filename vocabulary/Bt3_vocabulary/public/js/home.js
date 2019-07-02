@@ -65,6 +65,8 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
+	//
 	$('div.alert').delay(4000).slideUp();
 
 });

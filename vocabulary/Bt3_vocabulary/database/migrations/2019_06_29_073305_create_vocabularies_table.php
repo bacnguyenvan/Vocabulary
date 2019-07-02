@@ -25,7 +25,6 @@ class CreateVocabulariesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamp('create_at')->useCurrent();
-            $table->softDeletes();
         });
         
     }

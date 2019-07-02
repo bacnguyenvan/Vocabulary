@@ -54,8 +54,8 @@
 						<i class="fas fa-sort-down"></i>
 
 						<ul class="acount-dropdown">
-							<li><a href="">Setting</a></li>
-							<li><a href="{{route('login')}}">Log out</a></li>
+							<li id="setting" class="set"><a class="text-icon" href="{{route('setting')}}"><i id="set_rotage" class="fas fa-cog"></i>Setting</a></li>
+							<li id="setting"><a class="text-icon" href="{{route('login')}}"><i id="set_rotage" class="fas fa-sign-out-alt"></i>Log out</a></li>
 						</ul>
 
 					</ul>
@@ -101,7 +101,35 @@
 			{{-- end title --}}
 			<div class="container ">
 
-						{{-- paginate --}}
+				<table class="table table-content">
+				  {{-- <caption>List of vocabularies</caption> --}}
+				  <thead>
+				    <tr class="bg-warning">
+				      
+				      <th scope="col">Vocabulary</th>
+				      <th scope="col">Example sentence</th>
+				      <th scope="col">Meaning</th>
+				      <th scope="col">Edit</th>
+				      <th scope="col">Delete</th>
+
+				    </tr>
+				  </thead>
+				  <tbody>
+
+				  	@foreach($vocabulary as $item)
+						<tr>
+					      <td>{{$item['name']}}</td>
+					      <td>{{$item['sentence']}}</td>
+					      <td>{{$item['mean']}}</td>
+					      <td><a href="{{route('editVoca',$item['id'])}}"><i class="fas fa-pencil-alt fa-lg"></i></a></td>
+					      <td><a id="delete" href="{{route('deleteVoca',$item['id'])}}"><i class="far fa-trash-alt fa-lg" style="padding-left: 12px"></i></a></td>
+					    </tr>
+				  	@endforeach
+				    
+				  </tbody>
+				</table>
+				
+				{{-- paginate --}}
 						<?php 
 							$pageCurrent	=$vocabulary->currentPage();
 							$pageLast 		=$vocabulary->lastPage();
@@ -135,35 +163,6 @@
 
 						</div>
 					    {{-- end paginate --}}
-
-				<table class="table table-content">
-				  {{-- <caption>List of vocabularies</caption> --}}
-				  <thead>
-				    <tr class="bg-warning">
-				      
-				      <th scope="col">Vocabulary</th>
-				      <th scope="col">Example sentence</th>
-				      <th scope="col">Meaning</th>
-				      <th scope="col">Edit</th>
-				      <th scope="col">Delete</th>
-
-				    </tr>
-				  </thead>
-				  <tbody>
-
-				  	@foreach($vocabulary as $item)
-						<tr>
-					      <td>{{$item['name']}}</td>
-					      <td>{{$item['sentence']}}</td>
-					      <td>{{$item['mean']}}</td>
-					      <td><a href="{{route('editVoca',$item['id'])}}"><i class="fas fa-pencil-alt fa-lg"></i></a></td>
-					      <td><a id="delete" href="{{route('deleteVoca',$item['id'])}}"><i class="far fa-trash-alt fa-lg" style="padding-left: 12px"></i></a></td>
-					    </tr>
-				  	@endforeach
-				    
-				  </tbody>
-				</table>
-
 			</div>
 			
 
