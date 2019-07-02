@@ -18,7 +18,6 @@ class Mycontroller extends Controller
                 'password'  =>$request['pass']
             ];
             if(Auth::attempt($login)){
-               // $this->nameUser=$login['name'];
                 return redirect()->route('home');
             }else
             {
@@ -31,10 +30,14 @@ class Mycontroller extends Controller
     //home
     public function home(Request $request){
         $nameUser=Auth::user()->name; // get name to login with name admin
-
         $getId=Auth::user()->id;
-        $voca=vocabulary::where('user_id',$getId)->paginate(5);//get()->toArray();
-        return view('home',['vocabulary'=>$voca,'nameUser'=>$nameUser]);
+
+        //count total
+        $data1=vocabulary::where('user_id',$getId)->get(); 
+        $totalVoca=count($data1);
+
+        $voca=vocabulary::where('user_id',$getId)->paginate(5);
+        return view('home',['vocabulary'=>$voca,'nameUser'=>$nameUser,'total'=>$totalVoca]);
     }
     
     //signup
@@ -82,7 +85,7 @@ class Mycontroller extends Controller
             
                 $this->nameUser=$user->email;
                 Mail::send('pageMail', $data, function ($message){
-                    $message->from('bacb4tvk@gmail.com','Bac Admin');
+                    $message->from('bacnguyen11b41998@gmail.com','Bac Admin');
                     $message->to($this->nameUser)->subject('Getting password');
                 });
 
@@ -164,5 +167,25 @@ class Mycontroller extends Controller
 
     //search
     
-   
+    public function search(Request $request){
+
+        $id=Auth::user()->id;
+        //showing when search don't data
+        $data=vocabulary::where('user_id',$id);
+
+        $word       =$request->txtVoca;
+        $meaning    =$request->txtMean;
+        $nameUser=Auth::user()->name;
+        $voca=new vocabulary;
+
+        if(!empty($word))       $data=vocabulary::where('user_id',$id)->where('name','LIKE','%'.$word.'%');
+        if(!empty($meaning))    $data=vocabulary::where('user_id',$id)->where('mean','LIKE','%'.$meaning.'%');
+
+        $data1=$data->get();
+        $totalVoca=count($data1);
+        
+        $data=$data->paginate(5);
+    
+        return view('home',['vocabulary'=>$data,'nameUser'=>$nameUser,'total'=>$totalVoca]);
+    }
 }

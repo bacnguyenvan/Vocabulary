@@ -4,9 +4,9 @@ $(document).ready(function(){
 		$('.acount-dropdown').toggleClass('show');
 	});
 
+	
 	//create
 	$('.create').on('click',function(){
-		// console.log('da create');
 		var action=$(this).attr('action');
 		var token =$('meta[name="csrf-token"]').attr('content');
 		$.confirm({
@@ -32,6 +32,53 @@ $(document).ready(function(){
 			}
 		});
 	});
+	//search
+	$('.search_content').on('click',function(){
+		var action=$(this).attr('action');
+		var token =$('meta[name="csrf-token"]').attr('content');
+		$.confirm({
+			title:"<h3 style='color:purple'>Search</h3>",
+			content:
+			'<form action="'+action+'" id="search_form" method="post">'+
+				'<input type="hidden" name="_token" value="'+token+'" />'+
+				'<table class="table table-bordered table-danger">'+	
+
+					  '<tbody>'+
+						    '<tr>'+
+						     
+						      '<th>Vocabulary</td>'+
+						      '<td><input type="text" name="txtVoca"></td>'+
+						     
+						    '</tr>'+
+						    '<tr>'+
+						     
+						      '<th>Meaning</td>'+
+						      '<td><input type="text" name="txtMean"></td>'+
+						     
+						    '</tr>'+
+					   '</tbody>'+
+
+					
+				'</table>'+
+
+
+			'</form>',
+			buttons:{
+				formSubmit:{
+					text:'Oke',
+					btnClass:'btn-blue',
+					action:function(){
+						$('#search_form').submit();
+					}
+				},
+				cacel:function(){
+					//not do something
+				}
+			}
+
+		});
+	});
+
 
 	//validate form
 	$('#formName').validate({
@@ -65,8 +112,8 @@ $(document).ready(function(){
 			}
 		}
 	});
-	
-	//
+
+	// messages
 	$('div.alert').delay(4000).slideUp();
 
 });

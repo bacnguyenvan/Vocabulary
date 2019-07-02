@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Edit Vocabulary</title>
+    <title>Changing password,name</title>
 
     {{-- bootstrap --}}
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
@@ -63,7 +63,7 @@
                          <label class="title">PassWord<span class="required">*</span></label>
                          <div class="input-container input-block">
                             <i class="fas fa-key icon"></i>
-                            <input class="input-field" type="password" name="txtPass" value="">
+                            <input class="input-field" type="password" name="txtPass" placeholder="Your new password">
                         </div> 
                     </div>
 

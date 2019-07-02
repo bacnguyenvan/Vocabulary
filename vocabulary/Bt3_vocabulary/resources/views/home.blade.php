@@ -36,16 +36,18 @@
 				</div>
 
 				<div class="col-md-2 search">
-						<i class="fas fa-search" style="font-size: 20px"></i>
-						<input type="text" class="input_search" name="Search" placeholder="Search">
+
+					<div class="input_search">
+						<span class="search_content" action={{route('search')}}><i class="fas fa-search" style="font-size: 20px"></i>Search</span>
+					</div>
 				</div>
 
-				<div class="col-md-1 search">
+				<div class="col-md-2 search">
 						<div action="{{route('addVoca')}}" class="create"><i class="far fa-plus-square" style="font-size: 20px;padding-right:5px"></i>Create</div>
 						<meta name="csrf-token" content="{{ csrf_token() }}">
 				</div>
 				
-				<div class="col-md-7 pt-2">
+				<div class="col-md-6 pt-2">
 				
 					<ul class="acount float-right">  {{--  {{$item['name']}} --}}
 						<img src="images/Doraemon.png" class="img-fluid logo-acount">
@@ -94,9 +96,10 @@
 
 				<div class="total-vocabulary" style="color: black;font-size: 20px">Page: <span style="font-size: 20px;color: blue;
 				padding-left:15px"><i> {{$vocabulary->currentPage()}}</i></span></div>
+				
 
 				<p class="total-vocabulary">Total:<span style="font-size: 20px;color: blue;
-				padding-left:15px"><i> {{count($vocabulary)}}</i></span></p>
+				padding-left:15px"><i> {{$total}}</i></span></p>
 			</div>
 			{{-- end title --}}
 			<div class="container ">
@@ -163,6 +166,7 @@
 
 						</div>
 					    {{-- end paginate --}}
+				
 			</div>
 			
 
@@ -170,8 +174,10 @@
 		</div>
 
 		{{-- end content --}}
-		</form>
+		
 
+		</form>
+	
 	</div>
 
 	<script type="text/javascript" src="js/home.js"></script>

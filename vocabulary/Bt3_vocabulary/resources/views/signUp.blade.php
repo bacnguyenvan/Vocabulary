@@ -21,7 +21,7 @@
 				<form action="" method="post" id="form-signUp">
 					  {{csrf_field()}}
 					  <div class="form-group border-bottom">
-					  		<h3>Sign in</h3>
+					  		<h3>Sign up</h3>
 					  </div>
 					  <div class="form-group">
 						    <label >User Name<span class="required">*</span></label>
@@ -41,7 +41,7 @@
 						    <input type="password" class="form-control"  name="pass_confirm" >
 					  </div>
 
-					  <span style="margin-left: 15%">By creating an account, you agree to our Terms of Service.</span>
+					  {{-- <span style="margin-left: 15%">By creating an account, you agree to our Terms of Service.</span> --}}
 					  <button type="submit" class="btn btn-primary mt-3 mb-3" style="margin-left: 38%">Create Account</button>
 					  @if(isset($message))
 					  	<div class="alert alert-success">{{$message}}</div>
